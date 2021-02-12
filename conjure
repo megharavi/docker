@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    environment {
+    
+	//checkout branch
+	def conjure_checkout_branch = "master"
+	
+    }
+    stages {
+        stage('Checkout conjure from Github') {
+        	steps {
+                	script {
+				dir('conjure-checkout') 
+				{
+               				git branch: "${conjure_checkout_branch}", url: 'git@github.com:BuddyTV/conjure-checkout.git'
+              			}
+                  	}
+             	}
+	}
+    }
+}
